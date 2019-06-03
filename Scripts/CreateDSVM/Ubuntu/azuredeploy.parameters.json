@@ -4,7 +4,7 @@
   "parameters": {
      "adminUsername": { "value" : "mladsuser"},
      "adminPassword": { "value" : "mlads@2019"},
-     "vmName": { "value" : "mladsvm"},
+     "vmName": { "value" : "mladsvmnew"},
      "vmSize": { "value" : "Standard_DS3_v2"}
   }
 }
