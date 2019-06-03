@@ -10,30 +10,37 @@ else
         num=$1
 fi
 
-# Download dataset for tutorial
-cd /data
-wget https://gksparkstore.blob.core.windows.net/gkaiimersion/Examples.tar.gz
-tar xf Examples.tar.gz
-rm Examples.tar.gz
+# Set up a kernel for Recommender
+cd Recommenders
+python scripts/generate_conda_file.py --gpu --pyspark
+conda env create -f reco_full.yaml 
+conda activate reco_full
+python -m ipykernel install --user --name reco_full --display-name "Python 3 (reco full)"
 
-source /anaconda/bin/activate py35
-pip install --upgrade --no-deps https://cntk.ai/PythonWheel/GPU/cntk-2.0rc2-cp35-cp35m-linux_x86_64.whl
-cd /etc/skel/notebooks
-rm -rf CNTK
-python -m cntk.sample_installer
+# # Download dataset for tutorial
+# cd /data
+# wget https://gksparkstore.blob.core.windows.net/gkaiimersion/Examples.tar.gz
+# tar xf Examples.tar.gz
+# rm Examples.tar.gz
 
-cd /etc/skel/notebooks/CNTK-Samples-2-0rc2
-mv Examples Examples2
-ln -s /data/Examples Examples
+# source /anaconda/bin/activate py35
+# pip install --upgrade --no-deps https://cntk.ai/PythonWheel/GPU/cntk-2.0rc2-cp35-cp35m-linux_x86_64.whl
+# cd /etc/skel/notebooks
+# rm -rf CNTK
+# python -m cntk.sample_installer
 
-# set up the CHAINER demo
-docker pull chainer/chainer
-mkdir /etc/skel/CHAINER
-cd /etc/skel/CHAINER
-wget https://raw.githubusercontent.com/Microsoft/AI-Immersion-Workshop/master/Deep%20Learning%20and%20the%20Microsoft%20Cognitive%20Toolkit/CNTK%20Hands-on%20in%20GPU%20DSVMs/download_MNIST_chainer.py
-wget https://raw.githubusercontent.com/Microsoft/AI-Immersion-Workshop/master/Deep%20Learning%20and%20the%20Microsoft%20Cognitive%20Toolkit/CNTK%20Hands-on%20in%20GPU%20DSVMs/MNIST_chainer.py
-# download the data for attendees
-docker run -v /etc/skel/CHAINER:/host chainer/chainer /bin/bash -c "cd /host && python download_MNIST_chainer.py"
+# cd /etc/skel/notebooks/CNTK-Samples-2-0rc2
+# mv Examples Examples2
+# ln -s /data/Examples Examples
+
+# # set up the CHAINER demo
+# docker pull chainer/chainer
+# mkdir /etc/skel/CHAINER
+# cd /etc/skel/CHAINER
+# wget https://raw.githubusercontent.com/Microsoft/AI-Immersion-Workshop/master/Deep%20Learning%20and%20the%20Microsoft%20Cognitive%20Toolkit/CNTK%20Hands-on%20in%20GPU%20DSVMs/download_MNIST_chainer.py
+# wget https://raw.githubusercontent.com/Microsoft/AI-Immersion-Workshop/master/Deep%20Learning%20and%20the%20Microsoft%20Cognitive%20Toolkit/CNTK%20Hands-on%20in%20GPU%20DSVMs/MNIST_chainer.py
+# # download the data for attendees
+# docker run -v /etc/skel/CHAINER:/host chainer/chainer /bin/bash -c "cd /host && python download_MNIST_chainer.py"
 
 # start DIGITS in case they want to try it later
 systemctl start digits
