@@ -11,6 +11,7 @@ else
 fi
 
 # Set up a kernel for Recommender
+cd notebooks
 git clone https://github.com/microsoft/recommenders.git
 cd Recommenders
 python scripts/generate_conda_file.py --gpu --pyspark
