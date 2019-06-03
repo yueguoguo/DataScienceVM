@@ -14,6 +14,7 @@ fi
 cd notebooks
 git clone https://github.com/microsoft/recommenders.git
 cd Recommenders
+
 python scripts/generate_conda_file.py --gpu --pyspark
 conda env create -f reco_full.yaml 
 conda activate reco_full
