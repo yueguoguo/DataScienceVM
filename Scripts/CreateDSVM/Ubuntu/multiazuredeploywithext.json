@@ -36,6 +36,7 @@
         },
 		"fileUris": {
             "type": "string",
+            "defaultValue": "https://raw.githubusercontent.com/yueguoguo/DataScienceVM/master/Extensions/General/create-user-and-updatecntk.sh",
             "metadata": {
                 "description": "URL of the extension package or file"
             }
