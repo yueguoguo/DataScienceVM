@@ -42,7 +42,7 @@
         },
 		"commandToExecute": {
             "type": "string",
-            "defaultValue": "install.sh",
+            "defaultValue": "create-user-and-updatecntk.sh",
             "metadata": {
                 "description": "Extension bash script command to execute"
             }
