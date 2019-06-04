@@ -16,7 +16,7 @@ git clone https://github.com/Microsoft/Recommenders.git
 cd ~/notebooks/Recommenders
 python ~/notebooks/Recommenders/scripts/generate_conda_file.py --gpu --pyspark
 conda env create -f reco_full.yaml 
-conda activate reco_full
+source activate reco_full
 python -m ipykernel install --user --name reco_full --display-name "Python 3 (reco full)"
 
 # # Download dataset for tutorial
